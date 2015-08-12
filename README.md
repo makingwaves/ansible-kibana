@@ -15,7 +15,10 @@ An Ansible role for installing [Kibana](http://www.elasticsearch.org/overview/ki
 - `kibana_log` - Kibana log path (default: `/var/log/kibana.log`)
 - `kibana_log_rotate_count` - Kibana log rotation count (default: `5`)
 - `kibana_log_rotate_interval` - Kibana log rotation interval (default: `daily`)
-
-## Example Playbook
+- `kibana_ca` - Certificate
+- `kibana_ssl_key_file` - Key file
+- `kibana_ssl_cert_file` - Cert file
+- `kibana_elasticsearch_username` - elasticsearch username
+- `kibana_elasticsearch_password` - elasticsearch password
 
 See the [examples](./examples/) directory.
