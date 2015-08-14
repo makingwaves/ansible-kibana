@@ -19,12 +19,12 @@ kibana_index: "{{ kibana_index }}"
 # used by the Kibana server to perform maintence on the kibana_index at statup. Your Kibana
 # users will still need to authenticate with Elasticsearch (which is proxied thorugh
 # the Kibana server)
-{% if {{ kibana_elasticsearch_username }} is defined %}
-kibana_elasticsearch_username: {{ kibana_elasticsearch_username }}
+{% if  kibana_elasticsearch_username  is defined %}
+kibana_elasticsearch_username: "{{ kibana_elasticsearch_username }}"
 {% endif %}
 
-{% if {{ kibana_elasticsearch_password }} is defined %}
-kibana_elasticsearch_password: {{ kibana_elasticsearch_password }}
+{% if kibana_elasticsearch_password  is defined %}
+kibana_elasticsearch_password: "{{ kibana_elasticsearch_password }}"
 {% endif %}
 
 # The default application to load.
@@ -44,16 +44,16 @@ verify_ssl: true
 
 # If you need to provide a CA certificate for your Elasticsarech instance, put
 # the path of the pem file here.
-{% if {{ kibana_ca }} is defined %}
+{% if  kibana_ca  is defined %}
 ca: "{{ kibana_ca }}"
 {% endif %}
 
 # SSL for outgoing requests from the Kibana Server (PEM formatted)
-{% if {{ kibana_ssl_key_file }} is defined %} 
+{% if  kibana_ssl_key_file  is defined %}
 ssl_key_file: "{{ kibana_ssl_key_file }}"
 {% endif %}
 
-{% id {{ kibana_ssl_cert_file }} is defined %}
+{% if  kibana_ssl_cert_file  is defined %}
 ssl_cert_file: "{{ kibana_ssl_cert_file }}"
 {% endif %}
 
