@@ -11,3 +11,9 @@ kibana_index: ".kibana"
 kibana_log: /var/log/kibana.log
 kibana_log_rotate_count: 5
 kibana_log_rotate_interval: daily
+kibana_verify_ssl: true
+#kibana_elasticsearch_username
+#kibana_elasticsearch_password
+#kibana_ca
+#kibana_ssl_key_file
+#kibana_ssl_cert_file
