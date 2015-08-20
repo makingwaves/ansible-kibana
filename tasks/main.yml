@@ -14,7 +14,6 @@
   unarchive: src=/usr/local/src/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}.zip
              dest={{ kibana_dir }}
              copy=no
-             list_files=no
              creates={{ kibana_dir }}/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}
 
 - name: Configure Kibana
