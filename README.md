@@ -1,6 +1,6 @@
 # ansible-kibana
 
-An Ansible role for installing [Kibana](http://www.elasticsearch.org/overview/kibana/).
+An Ansible role for installing and configuring [Kibana](http://www.elasticsearch.org/overview/kibana/).
 
 ## Role Variables
 
