@@ -20,5 +20,9 @@ An Ansible role for installing [Kibana](http://www.elasticsearch.org/overview/ki
 - `kibana_ssl_cert_file` - Cert file
 - `kibana_elasticsearch_username` - elasticsearch username
 - `kibana_elasticsearch_password` - elasticsearch password
+- `kibana_verify_ssl` -  set to false to have a complete disregard for the validity of the SSL cert.
+- `kibana_elasticsearch_username` - basic auth for maintaining the ```kibana_index```
+- `kibana_elasticsearch_password` - basic auth for maintaining the ```kibana_index```
+
 
 See the [examples](./examples/) directory.

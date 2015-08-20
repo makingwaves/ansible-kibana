@@ -19,11 +19,11 @@ kibana_index: "{{ kibana_index }}"
 # used by the Kibana server to perform maintence on the kibana_index at statup. Your Kibana
 # users will still need to authenticate with Elasticsearch (which is proxied thorugh
 # the Kibana server)
-{% if  kibana_elasticsearch_username  is defined %}
+{% if  kibana_elasticsearch_username is defined %}
 kibana_elasticsearch_username: "{{ kibana_elasticsearch_username }}"
 {% endif %}
 
-{% if kibana_elasticsearch_password  is defined %}
+{% if kibana_elasticsearch_password is defined %}
 kibana_elasticsearch_password: "{{ kibana_elasticsearch_password }}"
 {% endif %}
 
@@ -41,7 +41,7 @@ shard_timeout: 0
 # Set to false to have a complete disregard for the validity of the SSL
 # certificate.
 
-verify_ssl: {{kibana_verify_ssl}}
+verify_ssl: "{{kibana_verify_ssl}}"
 
 # If you need to provide a CA certificate for your Elasticsarech instance, put
 # the path of the pem file here.
