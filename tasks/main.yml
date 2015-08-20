@@ -14,6 +14,7 @@
   unarchive: src=/usr/local/src/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}.zip
              dest={{ kibana_dir }}
              copy=no
+             list_files=no
              creates={{ kibana_dir }}/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}
 
 - name: Configure Kibana
@@ -28,8 +29,8 @@
     - Restart Kibana
 
 - name: Touch log file if it does not exist
-  command: touch {{ kibana_log }}
-           creates={{ kibana_log }}
+  file: path={{ kibana_log }} state=touch
+#           creates={{ kibana_log }}
 
 - name: Set log file permissions
   file: path={{ kibana_log }} owner=kibana group=kibana mode=0644
