@@ -24,3 +24,49 @@ An Ansible role for installing and configuring [Kibana](http://www.elasticsearch
 
 
 See the [examples](./examples/) directory.
+
+
+## Include role in a larger playbook
+### Add this role as a git submodule
+Assuming your playbook structure is such as:
+```
+- my-master-playbook
+  |- vars
+  |- roles
+  |- my-master-playbook-main.yml
+  \- my-master-inventory.ini
+```
+
+Checkout this project as a submodule under roles:
+
+```
+$  cd roles
+$  git submodule add https://github.com/comperiosearch/ansible-kibana.git ./kibana
+$  git submodule update --init
+$  git commit ./submodule -m "Added submodule as ./subm"
+```
+
+### Include this playbook as a role in your master playbook
+Example `my-master-playbook-main.yml`:
+
+```
+---
+
+#########################
+# Kibana install #
+#########################
+
+- hosts: all_nodes
+  user: ubuntu
+  sudo: yes
+
+  roles:
+    - kibana
+
+  vars_files:
+    - vars/my-vars.yml
+```
+
+
+
+
