@@ -27,8 +27,24 @@ kibana_elasticsearch_username: "{{ kibana_elasticsearch_username }}"
 kibana_elasticsearch_password: "{{ kibana_elasticsearch_password }}"
 {% endif %}
 
+
+# If your Elasticsearch requires client certificate and key
+# kibana_elasticsearch_client_crt: /path/to/your/client.crt
+# kibana_elasticsearch_client_key: /path/to/your/client.key
+
+# If you need to provide a CA certificate for your Elasticsarech instance, put
+# the path of the pem file here.
+{% if  kibana_ca  is defined %}
+ca: "{{ kibana_ca }}"
+{% endif %}
+
+
 # The default application to load.
 default_app_id: "discover"
+
+# Time in milliseconds to wait for elasticsearch to respond to pings, defaults to
+# request_timeout setting
+# ping_timeout: 1500
 
 # Time in milliseconds to wait for responses from the back end or elasticsearch.
 # This must be > 0
@@ -38,16 +54,14 @@ request_timeout: 300000
 # Set to 0 to disable.
 shard_timeout: 0
 
+# Time in milliseconds to wait for Elasticsearch at Kibana startup before retrying
+# startup_timeout: 5000
+
 # Set to false to have a complete disregard for the validity of the SSL
 # certificate.
 
 verify_ssl: {{kibana_verify_ssl}}
 
-# If you need to provide a CA certificate for your Elasticsarech instance, put
-# the path of the pem file here.
-{% if  kibana_ca  is defined %}
-ca: "{{ kibana_ca }}"
-{% endif %}
 
 # SSL for outgoing requests from the Kibana Server (PEM formatted)
 {% if  kibana_ssl_key_file  is defined %}
@@ -60,6 +74,11 @@ ssl_cert_file: "{{ kibana_ssl_cert_file }}"
 
 # Set the path to where you would like the process id file to be created.
 # pid_file: /var/run/kibana.pid
+
+# If you would like to send the log output to a file you can set the path below.
+# This will also turn off the STDOUT log output.
+# log_file: ./kibana.log
+
 
 # Plugins that are included in the build, and no longer found in the plugins/ folder
 bundled_plugin_ids:

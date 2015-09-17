@@ -1,5 +1,5 @@
 ---
-kibana_version: "4.0.1"
+kibana_version: "4.1"
 kibana_os: "linux"
 kibana_arch: "x64"
 kibana_dir: "/opt"
@@ -12,6 +12,10 @@ kibana_log: /var/log/kibana.log
 kibana_log_rotate_count: 5
 kibana_log_rotate_interval: daily
 kibana_verify_ssl: "true"
+kibana_apt_repo: "deb http://packages.elasticsearch.org/kibana/{{ kibana_version }}/debian stable main"
+kibana_repo_key: "http://packages.elasticsearch.org/GPG-KEY-elasticsearch"
+kibana_yum_repo_dest: "/etc/yum.repos.d/kibana.repo"
+
 #kibana_elasticsearch_username
 #kibana_elasticsearch_password
 #kibana_ca
