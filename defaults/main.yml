@@ -15,6 +15,9 @@ kibana_verify_ssl: "true"
 kibana_apt_repo: "deb http://packages.elasticsearch.org/kibana/{{ kibana_version }}/debian stable main"
 kibana_repo_key: "http://packages.elasticsearch.org/GPG-KEY-elasticsearch"
 kibana_yum_repo_dest: "/etc/yum.repos.d/kibana.repo"
+kibana_service_startonboot: no
+#elasticsearch_http_cors_enabled: "false"
+kibana_service_state: started
 
 #kibana_elasticsearch_username
 #kibana_elasticsearch_password

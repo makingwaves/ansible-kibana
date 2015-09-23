@@ -7,3 +7,8 @@
              dest={{ kibana_dir }}/kibana/config/kibana.yml
   notify:
      - Restart Kibana
+
+# Register Kibana service to start on boot
+- name: Ensure Kibana is started on boot
+  service: name=kibana enabled={{ kibana_service_startonboot }} state={{ kibana_service_state }}
+

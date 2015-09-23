@@ -21,9 +21,8 @@ An Ansible role for installing and configuring [Kibana](http://www.elasticsearch
 - `kibana_verify_ssl` -  set to false to have a complete disregard for the validity of the SSL cert.
 - `kibana_elasticsearch_username` - basic auth username for maintaining the ```kibana_index```
 - `kibana_elasticsearch_password` - basic auth password for maintaining the ```kibana_index```
-
-
-See the [examples](./examples/) directory.
+- `kibana_service_startonboot` - start kibana service on boot - default no
+- `kibana_service_state` - kibana service state - default enabled
 
 
 ## Include role in a larger playbook
