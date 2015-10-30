@@ -22,7 +22,7 @@
   register: kibana_dir_exists
 
 - name: move kibana into place
-  command: mv {{ kibana_dir }}/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }} {{ kibana_dir }}
+  command: mv {{ kibana_root_dir }}/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }} {{ kibana_dir }}
   when: kibana_dir_exists.stat.islnk is not defined
 
 - name: Configure Kibana service definition
