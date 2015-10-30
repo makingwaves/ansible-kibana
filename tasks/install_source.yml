@@ -1,3 +1,9 @@
+- name: Create service account for Kibana
+  user: name=kibana
+        system=yes
+        home=/var/lib/kibana
+        shell=/bin/false
+        state=present
 
 - name: Download Kibana
   get_url: url=https://download.elasticsearch.org/kibana/kibana/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}.tar.gz
@@ -5,6 +11,21 @@
 
 - name: Extract and install Kibana
   unarchive: src=/usr/local/src/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}.tar.gz
-             dest={{ kibana_dir }}
+             dest={{ kibana_root_dir }}
              copy=no
-             creates={{ kibana_dir }}/kibana
+             owner=kibana
+             group=kibana
+             creates={{ kibana_dir }}
+
+- name: check kibana installed
+  stat: path={{ kibana_dir }}
+  register: kibana_dir_exists
+
+- name: move kibana into place
+  command: mv {{ kibana_dir }}/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }} {{ kibana_dir }}
+  when: kibana_dir_exists.stat.islnk is not defined
+
+- name: Configure Kibana service definition
+  template: src=kibana.conf.j2 dest=/etc/init/kibana.conf
+  notify:
+    - Restart Kibana

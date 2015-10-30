@@ -1,4 +1,12 @@
 ---
+
+- name: Create service account for Kibana
+  user: name=kibana
+        system=yes
+        home=/var/lib/kibana
+        shell=/bin/false
+        state=present
+
 - include: install_source.yml
   when: not kibana_use_repo
 
@@ -8,7 +16,7 @@
 
 - name: Configure Kibana
   template: src=kibana.yml.j2
-             dest={{ kibana_dir }}/kibana/config/kibana.yml
+             dest={{ kibana_dir }}/config/kibana.yml
   notify:
      - Restart Kibana
 
@@ -19,7 +27,17 @@
   notify:
      - Restart Kibana
 
+- name: Configure Kibana service definition
+  template: src=kibana.conf.j2 dest=/etc/init/kibana.conf
+  notify:
+    - Restart Kibana
 
-# Register Kibana service to start on boot
-- name: Ensure Kibana is started on boot
-  service: name=kibana enabled={{ kibana_service_startonboot }} state={{ kibana_service_state }}
+- name: Touch log file if it does not exist
+  command: touch {{ kibana_log }}
+           creates={{ kibana_log }}
+
+- name: Set log file permissions
+  file: path={{ kibana_log }} owner=kibana group=kibana mode=0644
+
+- name: Configure Kibana log rotation
+  template: src=logrotate_kibana.j2 dest=/etc/logrotate.d/kibana
