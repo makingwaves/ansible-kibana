@@ -1,5 +1,7 @@
 ---
 kibana_version: "4.1"
+#use the kibana repo? if false, download zip file from elasticsearch.
+kibana_use_repo: True
 kibana_os: "linux"
 kibana_arch: "x64"
 kibana_dir: "/opt"
