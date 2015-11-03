@@ -21,7 +21,8 @@ kibana_yum_repo_dest: "/etc/yum.repos.d/kibana.repo"
 kibana_service_startonboot: no
 #elasticsearch_http_cors_enabled: "false"
 kibana_service_state: started
-
+kibana_group: kibana
+kibana_user: kibana
 #kibana_elasticsearch_username
 #kibana_elasticsearch_password
 #kibana_ca

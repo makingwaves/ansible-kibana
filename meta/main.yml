@@ -1,8 +1,8 @@
 ---
 galaxy_info:
-  author: Hector Castro
+  author: Hector Castro / Christoffer Vig
   description: An Ansible role for installing Kibana.
-  company: Azavea Inc.
+  company: Azavea Inc. / Comperio Search
   license: Apache
   min_ansible_version: 1.2
   platforms:

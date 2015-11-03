@@ -1,5 +1,5 @@
 - name: Create service account for Kibana
-  user: name=kibana
+  user: name={{kibana_user}}
         system=yes
         home=/var/lib/kibana
         shell=/bin/false
@@ -9,13 +9,19 @@
   get_url: url=https://download.elasticsearch.org/kibana/kibana/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}.tar.gz
            dest=/usr/local/src/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}.tar.gz
 
-- name: Extract and install Kibana
-  unarchive: src=/usr/local/src/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}.tar.gz
-             dest={{ kibana_root_dir }}
-             copy=no
-             owner=kibana
-             group=kibana
-             creates={{ kibana_dir }}
+#- name: Extract and install Kibana
+#  unarchive: src=/usr/local/src/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}.tar.gz
+#             dest={{ kibana_root_dir }}
+#             copy=no
+#             owner={{kibana_user}}
+#             creates={{ kibana_dir }}
+
+
+- name: Extract and install Kibana (old skool)
+  command: "tar xzf /usr/local/src/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}.tar.gz -C {{ kibana_root_dir }}"
+
+- name: set correct permissions
+  file: path={{kibana_dir}} owner={{kibana_user}} groupt={{kibana_group}} recurse=yes
 
 - name: check kibana installed
   stat: path={{ kibana_dir }}
