@@ -20,8 +20,6 @@
 - name: Extract and install Kibana (old skool)
   command: "tar xzf /usr/local/src/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}.tar.gz -C {{ kibana_root_dir }}"
 
-- name: set correct permissions
-  file: path={{kibana_dir}} owner={{kibana_user}} groupt={{kibana_group}} recurse=yes
 
 - name: check kibana installed
   stat: path={{ kibana_dir }}
@@ -30,6 +28,10 @@
 - name: move kibana into place
   command: mv {{ kibana_root_dir }}/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }} {{ kibana_dir }}
   when: kibana_dir_exists.stat.islnk is not defined
+
+- name: set correct permissions
+  file: path={{kibana_dir}} state=directory owner={{kibana_user}} group={{kibana_group}} recurse=yes
+
 
 - name: Configure Kibana service definition
   template: src=kibana.conf.j2 dest=/etc/init/kibana.conf
