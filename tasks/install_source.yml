@@ -38,5 +38,5 @@
   notify:
     - Restart Kibana
 
-#- name: modify ownership of babelcache (why?)
-#  file: path=/opt/kibana/optimize/.babelcache.json owner={{kibana_user}} group={{kibana_group}}
+- name: modify ownership of babelcache (why?)
+  file: state=touch path=/opt/kibana/optimize/.babelcache.json owner={{kibana_user}} group={{kibana_group}}
