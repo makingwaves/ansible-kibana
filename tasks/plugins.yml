@@ -11,3 +11,4 @@
     chdir="{{ kibana_dir }}"
   with_items: kibana_plugins
   ignore_errors: no
+

@@ -1,12 +1,5 @@
 ---
 
-- name: Create service account for Kibana
-  user: name=kibana
-        system=yes
-        home=/var/lib/kibana
-        shell=/bin/false
-        state=present
-
 - include: install_source.yml
   when: not kibana_use_repo
 

@@ -37,3 +37,6 @@
   template: src=kibana.conf.j2 dest=/etc/init/kibana.conf
   notify:
     - Restart Kibana
+
+#- name: modify ownership of babelcache (why?)
+#  file: path=/opt/kibana/optimize/.babelcache.json owner={{kibana_user}} group={{kibana_group}}
