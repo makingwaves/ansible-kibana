@@ -4,6 +4,11 @@ server.port: "{{ kibana_port }}"
 # The host to bind the server to.
 server.host: "{{ kibana_host }}"
 
+
+# If you are running kibana behind a proxy, and want to mount it at a path,
+# specify that path here. The basePath can't end in a slash.
+# server.basePath: ""
+
 # The Elasticsearch instance to use for all your queries.
 elasticsearch.url: "{{ kibana_elasticsearch }}"
 
@@ -29,13 +34,6 @@ elasticsearch.username: "{{ kibana_elasticsearch_username }}"
 {% if kibana_elasticsearch_password is defined %}
 elasticsearch.password: "{{ kibana_elasticsearch_password }}"
 {% endif %}
-
-
-# If your Elasticsearch requires client certificate and key
-# kibana_elasticsearch_client_crt: /path/to/your/client.crt
-# kibana_elasticsearch_client_key: /path/to/your/client.key
-
-
 
 # SSL for outgoing requests from the Kibana Server (PEM formatted)
 
@@ -64,21 +62,21 @@ elasticsearch.ssl.verify: {{kibana_verify_ssl}}
 
 # Time in milliseconds to wait for elasticsearch to respond to pings, defaults to
 # request_timeout setting
-# ping_timeout: 1500
+# elasticsearch.pingTimeout: 1500
 
 # Time in milliseconds to wait for responses from the back end or elasticsearch.
 # This must be > 0
-request_timeout: 300000
+# elasticsearch.requestTimeout: 300000
 
 # Time in milliseconds for Elasticsearch to wait for responses from shards.
 # Set to 0 to disable.
-shard_timeout: 0
+# elasticsearch.shardTimeout: 0
 
 # Time in milliseconds to wait for Elasticsearch at Kibana startup before retrying
-# startup_timeout: 5000
+# elasticsearch.startupTimeout: 5000
 
 # Set the path to where you would like the process id file to be created.
-# pid_file: /var/run/kibana.pid
+# pid.file: /var/run/kibana.pid
 
 # If you would like to send the log output to a file you can set the path below.
 # logging.dest: stdout
