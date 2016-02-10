@@ -17,3 +17,6 @@
        update_cache=yes 
        state=latest
   tags: kibana_install
+
+- name: modify ownership of babelcache (why?)
+  file: state=touch path=/opt/kibana/optimize/.babelcache.json owner={{kibana_user}} group={{kibana_group}}
